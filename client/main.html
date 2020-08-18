@@ -1,0 +1,129 @@
+<head>
+  <title>BikePooling</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="icon" href="https://instagram.fpnq7-1.fna.fbcdn.net/v/t51.2885-19/s150x150/47361483_2220160938048728_3767544264079179776_n.jpg?_nc_ht=instagram.fpnq7-1.fna.fbcdn.net&_nc_ohc=7u0HQ1iet9AAX-q7PYz&oh=a338ecaa8b382ec52383d0c5f024ece3&oe=5F6568DC" type="image/icon">
+</head>
+
+<body>
+{{>nav}}
+<div class="container">
+  <h1 style="color:grey">Welcome to BikePooling!</h1>
+  {{>start}}
+ </div>
+</body>
+
+<template name="start">
+  <div class="container">
+  <h3>Do you have an Account with us ?</h3>
+  <button class="startb" style="background-color:yellow">No, I want to Register</button>
+  </div>
+  <br>
+{{#if clicked}}
+  {{> login}} <!-- the firstPage template will be rendered if the var is == false -->
+   {{else}}
+  {{> register}} <!-- this will be render when the session is equals to true -->
+ {{/if}}
+</template>
+
+
+<template name="login">
+<div class="container" style="text-align:center">
+<form class="mylogin" method="post">
+	Email: 
+	<input type="email" id="emaillogin" placeholder="Email">
+	Password: 
+	<input type="password" id="passlogin" placeholder="Password">
+	<input type="submit" id="loginb" value="Submit Login" class=" btn-danger">
+</form>
+</div>
+<br>
+{{>search}}
+</template>
+
+
+
+<template name="register">
+<div class="container" style="text-align:center">
+	<h3 style="color:blue">Please Register</h3>
+<div class="card">
+	<form class="myform" method="post">
+		Name: 
+		<input type="text" id="name" placeholder="Name" required>
+		<label for="mobile">Mobile:</label> 
+		<input type="number" id="mobile" placeholder="Mobile" required><br>
+		PinCode: 
+		<input type="number" id="pincode" placeholder="Pincode" required>
+		Gender: 
+<!--		<input type="text" id="gender" placeholder="m/f/o">-->
+		<input type="radio"  name="gender" value="male">Male
+		<input type="radio"  name="gender" value="female">Female
+		<input type="radio"  name="gender" value="others">Others
+		<br>
+		Area:<input type="text" id="areal" placeholder="Locality" required>
+		<br>
+		Email: 
+		<input type="email" id="email" placeholder="Email" required>
+		Password: 
+		<input type="password" id="pass" placeholder="Password" required>
+		<hr/>
+		<div class="text-center">
+		<input type="submit" value="Submit Details" class=" btn-danger">
+		</div>
+		</form>
+</div>
+</div>
+</template>
+
+<template name="search">
+	<div class="container">
+	<table style="width:100%">
+	<tr>
+	<th>Name</th>
+	<th>Mobile</th>
+	<th>Pincode</th>
+	<th>Locality</th>
+	<th>Gender</th>
+	<th>Email</th>
+	</tr>
+		{{#each list}}
+<hr>
+<tr>	
+	<td>{{name}}</td>
+	<td><a href="https://wa.me/91{{mobile}}?text=I'm%20interested%20in%20sharing%20bike%20with%20you!">{{mobile}}</a></td>
+	<td>{{pincode}}</td>
+	<td>{{area}}</td>
+	<td>{{gender}}</td>
+	<td>{{email}}</td>
+</tr>
+
+	{{/each}}
+	
+	</table>
+	</div>
+</template>
+
+<template name="nav">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">BikePooling</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="">Home</a></li>
+        <li><a href="https://github.com/swapnil0207/">About Us</a></li>
+        <li><a href="https://www.linkedin.com/in/swapnil-j0207/">Contact Us</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+  
+</template>
